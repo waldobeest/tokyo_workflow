@@ -20,18 +20,19 @@ def create_image_grid(grid_size, image_folder, output_folder, max_dimension_res=
     grid_count = 1
 
     # Iterate over images and create grid images
-    for i in range(0, num_images, grid_size):
-        grid_images = images[i:i + grid_size]
-        grid_width = grid_images[0].width * 3
-        grid_height = grid_images[0].height * 3
+    for i in range(0, num_images, pow(grid_size, 2)):
+        print(f'grid of images: {i} till {i + pow(grid_size, 2)}')
+        grid_images = images[i:i + pow(grid_size, 2)]
+        grid_width = grid_images[0].width * grid_size
+        grid_height = grid_images[0].height * grid_size
 
         # Create a new image for the grid
         grid_image = Image.new('RGB', (grid_width, grid_height))
 
         # Populate the grid with images
         for j, image in enumerate(grid_images):
-            row = j // 3
-            col = j % 3
+            row = j // grid_size
+            col = j % grid_size
             x = col * image.width
             y = row * image.height
             grid_image.paste(image, (x, y))

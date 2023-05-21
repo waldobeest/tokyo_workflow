@@ -1,6 +1,8 @@
 import os
 from PIL import Image
 
+from project_config import grid_size
+
 
 def split_grid_images(grid_folder, output_directory, key_frames_directory):
     key_frame_names = [filename for filename in sorted(os.listdir(key_frames_directory))]
@@ -19,12 +21,12 @@ def split_grid_images(grid_folder, output_directory, key_frames_directory):
             image_width, image_height = image.size
 
             # Calculate the dimensions of each individual image in the grid
-            grid_width = image_width // 3
-            grid_height = image_height // 3
+            grid_width = image_width // grid_size
+            grid_height = image_height // grid_size
 
             # Split the grid image into individual images
-            for row in range(3):
-                for col in range(3):
+            for row in range(grid_size):
+                for col in range(grid_size):
                     # Calculate the coordinates for cropping each individual image
                     x = col * grid_width
                     y = row * grid_height

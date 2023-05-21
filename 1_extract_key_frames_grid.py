@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-from project_config import input_video_path
+from project_config import input_video_path, grid_size, max_dimension_res
 
 import cv2
 
@@ -15,7 +15,8 @@ def extract_keyframes(all_frames_path, output_directory):
     selected_frames = [sorted_all_frames[0], sorted_all_frames[-1]]
     for i, filename in enumerate(sorted(os.listdir(all_frames_path))):
         if filename.endswith('.jpg') or filename.endswith('.png'):
-            if (i + 1) % 3 == 0:
+            # TODO get better key_frame selection
+            if (i + 1) % 7 == 0:
                 selected_frames.append(filename)
 
     for filename in selected_frames:
@@ -25,7 +26,7 @@ def extract_keyframes(all_frames_path, output_directory):
 
 
 def extract_all_frames(video_path, output_directory):
-    fps = 30
+    fps = 30  # Default
     clip = cv2.VideoCapture(video_path)
     if clip:
         fps = clip.get(cv2.CAP_PROP_FPS)
@@ -50,6 +51,4 @@ clear_dir('output/sd_keys_upscaled/')
 
 extract_all_frames(input_video_path, all_frames_output_directory)
 extract_keyframes(all_frames_output_directory, key_frames_output_directory)
-grid_size = 9
-max_dimension_res = 1280
 create_image_grid(grid_size, key_frames_output_directory, grid_output_directory, max_dimension_res)
