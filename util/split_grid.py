@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-from project_config import grid_size
+from config import grid_size
 
 
 def split_grid_images(grid_folder, output_directory, key_frames_directory):

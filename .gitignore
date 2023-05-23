@@ -2,3 +2,4 @@ output
 input
 venv
 .idea
+.env

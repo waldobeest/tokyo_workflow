@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-from project_config import input_video_path, grid_size, max_dimension_res
+from config import input_video_path, grid_size, max_dimension_res
 
 import cv2
 

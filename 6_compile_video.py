@@ -1,4 +1,4 @@
-from project_config import input_video_path
+from config import input_video_path
 from util.video_compiler import run
 import os
 
